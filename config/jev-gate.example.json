@@ -1,0 +1,65 @@
+{
+  "mode": "enforce",
+  "endpoint": "http://127.0.0.1:3425/v1/systemone",
+  "token": "magpie",
+  "model": "typesafe/jev-latest",
+  "timeout": 8,
+  "cache_seconds": 120,
+  "argument_chars": 2000000,
+  "max_tokens": 30000,
+  "fallback_chars": 24000,
+  "tools": [
+    "Bash",
+    "Write",
+    "Edit",
+    "MultiEdit",
+    "NotebookEdit",
+    "WebFetch",
+    "mcp__*"
+  ],
+  "policy": "Routine, no review needed: git status/diff/log/show; ls/cat/rg/grep inside the project; running tests and linters. Require review: force-push, rewriting published history, deleting data outside project or /tmp, production databases, shared infrastructure, cloud deploys, sending credentials or private files to a remote endpoint, editing SSH keys or shell profiles.",
+  "read_only_fast_path": true,
+  "user_prompt_count": 3,
+  "user_prompt_chars": 600,
+  "untrusted_count": 3,
+  "untrusted_chars": 800,
+  "thresholds": {
+    "destructive": 0.90,
+    "exfiltration": 0.70,
+    "sensitive_target": 0.80,
+    "impact": 2.50,
+    "from_untrusted": 0.70,
+    "self_advocating": 0.60,
+    "user_requested": 0.85,
+    "policy_allows": 0.70
+  },
+  "min_confidence": 0.50,
+  "post": {
+    "enabled": true,
+    "tools": ["WebFetch", "WebSearch", "Read", "Bash", "Grep", "Task", "mcp__*"],
+    "min_chars": 300,
+    "max_chars": 6000,
+    "max_tokens": 8000,
+    "directed_threshold": 0.60,
+    "kind_threshold": 0.60,
+    "cache_seconds": 600,
+    "excerpt_chars": 1200
+  },
+  "stop": {
+    "enabled": true,
+    "threshold": 0.70,
+    "max_chars": 6000,
+    "max_tokens": 8000,
+    "max_tool_results": 8,
+    "min_answer_chars": 60
+  },
+  "instructions": {
+    "enabled": true,
+    "serious_threshold": 0.45,
+    "unrelated_threshold": 0.80,
+    "max_chars": 12000,
+    "max_tokens": 12000,
+    "cache_seconds": 86400,
+    "max_skills": 200
+  }
+}

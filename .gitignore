@@ -1,0 +1,24 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches and logs
+.cache/
+*.log
+*.tmp
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local runtime overrides & test outputs
+local_test/
+local_run/
+config/jev-gate.json
